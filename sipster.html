@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Sipster: search, discover, and save your favorite cocktails." />
+  <title>Sipster</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="favicon.ico">
+</head>
+<body>
+  <header>
+    <h1>Sipster</h1>
+    <p class="tagline">Sipster: search, discover, and save your favorite cocktails.</p>
+    <navigation>
+      <ul>
+        <li><a href="sipster.html">Home</a></li>
+        <li><a href="favorites.html">Favorites</a></li>
+      </ul>
+    </navigation>
+  </header>
+
+  <main id="app">
+    <form>
+      <label for="select-filter">Choose a filter:</label>
+      <select id="select-filter" name="select-filter" required>
+        <option value="">- Select -</option>
+        <option value="name">Name</option>
+        <option value="firstLetter">First Letter</option>
+        <option value="ingredient">Ingredient</option>
+        <option value="glass">Glass Type</option>
+        <option value="alcoholic">Alcoholic/Non-Alcoholic</option>
+      </select>
+      <div class="error-message" aria-live="assertive">Select a filter</div>
+
+      <label for="search-input">Search for a cocktail:</label>
+      <input type="text" id="search-input" name="search-input" required />
+      <div class="error-message" aria-live="assertive">Enter a value</div>
+      <button type="submit">Search</button>
+    </form>
+    <button>Surprise Sip</button>
+     <section id="results" aria-live="polite">
+      
+      </section>
+  </main>
+
+  <footer>
+    <small>&copy; <span id="year"></span> Sipster</small>
+  </footer>
+
+  <noscript>
+    <p>Please enable JavaScript to use this application.</p>
+  </noscript>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  <script src="sipster.js" defer></script>
+</body>
+</html>
