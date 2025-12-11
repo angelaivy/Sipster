@@ -22,7 +22,7 @@ Specs:
   - Satisfies #2.2
 - Fetches https://www.thecocktaildb.com/api.php for data
   - Developer key is 1 (this is listed on their website)
-  - Try/Catch with error handling
+  - Try/Catch with error handling/user facing error messages
   - Satisfies #2.4
 - User selection for filter
   - Whatever the filter value is will update the API call for that category
@@ -34,9 +34,11 @@ Specs:
   - Satisfies #1
 - Separate button to generate a random cocktail
   - Satisfies #1
-- A list populates with the data 
+- A list populates with the basic data 
   - Name, Glass, Instructions, Glass, Image, Ingrediants, Measurements
   - Uses classes: Drink Model to handle drink output and formatting, Favorites Manager to handle favorite drinks section.
+  - Favorites Manager will manage storing, retrieving, and removing favorites from localStorage.
+  - Drink Model will encapsulate parsing and formatting of cocktail data from the API.
   - Satisfies #2.1
 - Add to favorites button with localstorage
   - Satisfies #1, #2.5
@@ -46,13 +48,23 @@ Specs:
 
 ## UX
 
+Is responsive / mobile first
+
 Name, tagline
 
-A user sees a select option and a text input with a search button. There is a short menu: home, favorites. Description to let the user know what to do and what to expect.
+A user sees a select option and a text input with a search button. There is a short menu: home, favorites that always persists. Description to let the user know what to do and what to expect.
 
 They add their selection and hit search.
 
 A list populates with Cocktail name, image
 
-The user can click into the drink for the full view of the cocktail with instructions, measurments and ingrediants, glass ,etc. 
+The user can click into the drink for the full view of the cocktail with instructions, measurments and ingrediants, glass, etc. 
+
+There is a favorite button the user can add the drink to.
+
+There is a back button so the user can get out of the drink.
+
+Favorites menu: Lists the Cocktail name, image. A user can click into the drink. There is a remove from favorites button.
+
+Random cocktail generator: Opens the full drink view 
 
