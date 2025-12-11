@@ -18,7 +18,7 @@
 **Description**: Users can discover drinks and build their own favorites list. Filter by name, first letter, ingredient name, get a random cocktail, alcoholic or non-alcoholic, glass type.
 
 Specs:  
-- TDD: unit tests first using jest
+- TDD: unit tests first using jasmine
   - Satisfies #2.2
 - Fetches https://www.thecocktaildb.com/api.php for data
   - Developer key is 1 (this is listed on their website)
