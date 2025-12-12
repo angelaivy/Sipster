@@ -22,26 +22,29 @@
 
   <main id="app">
     <form>
-      <label for="select-filter">Choose a filter:</label>
-      <select id="select-filter" name="select-filter" required>
-        <option value="">- Select -</option>
-        <option value="name">Name</option>
-        <option value="firstLetter">First Letter</option>
-        <option value="ingredient">Ingredient</option>
-        <option value="glass">Glass Type</option>
-        <option value="alcoholic">Alcoholic/Non-Alcoholic</option>
-      </select>
-      <div class="error-message" aria-live="assertive">Select a filter</div>
-
-      <label for="search-input">Search for a cocktail:</label>
-      <input type="text" id="search-input" name="search-input" required />
-      <div class="error-message" aria-live="assertive">Enter a value</div>
+      <div class="formContainer">
+        <label for="selectFilter">Choose a filter:</label>
+        <select id="selectFilter" name="select-filter" required>
+          <option value="">- Select -</option>
+          <option value="name">Name</option>
+          <option value="firstLetter">First Letter</option>
+          <option value="ingredient">Ingredient</option>
+          <option value="glass">Glass Type</option>
+          <option value="alcoholic">Alcoholic/Non-Alcoholic/Optional</option>
+        </select>
+        <div class="errorMessage hide" aria-live="assertive">Please select a filter.</div>
+      </div>
+      
+      <div class="formContainer">
+        <label for="searchInput">Search for a cocktail:</label>
+        <input type="text" id="searchInput" name="search-input" required />
+        <div class="errorMessage hide" aria-live="assertive">Please enter a valid search term.</div>
+      </div>
+      
       <button type="submit">Search</button>
     </form>
-    <button>Surprise Sip</button>
-     <section id="results" aria-live="polite">
-      
-      </section>
+    <button id="surpriseSip">Surprise Sip</button>
+     <section id="results" aria-live="polite"></section>
   </main>
 
   <footer>
@@ -55,6 +58,6 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
-  <script src="sipster.js" defer></script>
+  <script type="module" src="./sipster.js"></script>
 </body>
 </html>
