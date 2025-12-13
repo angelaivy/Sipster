@@ -11,7 +11,7 @@ let query,
     path;
 
 // Get value from the input.
-inputSelect.addEventListener('change', () => {
+inputSelect?.addEventListener('change', () => {
   const textValue = inputSelect.value;
   if (isValidInput(inputSelect.type, inputSelect, textValue)) {
     query = textValue;
@@ -19,7 +19,7 @@ inputSelect.addEventListener('change', () => {
 });
 
 // Get values from the filter.
-filterSelect.addEventListener('change', () => {
+filterSelect?.addEventListener('change', () => {
   const selection = filterSelect.value;
   if (isValidInput(filterSelect.type, filterSelect, selection)) {
     switch (selection) {
@@ -46,15 +46,30 @@ filterSelect.addEventListener('change', () => {
 
 // Search and get results.
 const searchButton = document.querySelector('[type="submit"]');
-searchButton.addEventListener('click', async (e) =>{
+searchButton?.addEventListener('click', async (e) =>{
   e.preventDefault();
+  // Clear out the container before the next query.
+  detailsContainer.innerText = '';
   const results = await searchDrinks(path, query);
-  console.log('insearchbtn', results);
   const drinks = results['drinks'];
-  // get drinks and populate with results.
-  drinks.forEach((drink) => {
-    const getDrink = new Drink(drink.strDrink, drink.strDrinkThumb, detailsContainer);
-    getDrink.generateDrink();
-  });
+  console.log('insearchbtn', results);
+  // If there are valid results display the list - should be an array.
+  if (Array.isArray(drinks)) {
+    // Generate the unordered list element.
+    const drinkList = document.createElement('ul');
+    detailsContainer.prepend(drinkList)
+    // Get drinks and populate with results.
+    drinks.forEach((drink) => {
+      const getDrink = new Drink(
+        drink.strDrink,
+        drink.strDrinkThumb,
+        drinkList
+      );
+      getDrink.generateDrink();
+    });
+  } else {
+    detailsContainer.innerText = 'No data found, try another search.';
+  }
+ 
 })
 

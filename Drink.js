@@ -7,14 +7,13 @@ export class Drink {
 
   generateDrink() {
     const detailShort = `
-      <div class="detailShort">
-        <a href="">
+      <li class="detailShort">
+        <a href="details.html">
           <h3>${this.name}</h3>
           <img src="${this.thumb}/small" alt=""/>
         </a>
-      </div>
+      </li>
     `
-    
     this.container.insertAdjacentHTML('afterbegin', detailShort);
   }
 }
