@@ -2,7 +2,6 @@
   // Docs allows 1 for development.
   const apiKey = '1',
         baseUrl = `https://www.thecocktaildb.com/api/json/v1/${apiKey}/`;
-  const detailsContainer = document.getElementById('results');
  
   const doApiRequest = async (pathWithQuery = '') => {
     let endpoint = '';
@@ -17,8 +16,8 @@
   
     } catch(e) {
       console.error(e)
-      detailsContainer.innerText = `${e}`;
+      return e;
     }
   }
 
-export {doApiRequest, detailsContainer }
+export {doApiRequest }
