@@ -1,4 +1,5 @@
-import { isValidInput } from './validation.js'
+import { isValidInput } from './validation.js';
+import { searchDrinks } from './search.js';
  // Select filter, save value on change
 // Type user input, save value on change
 // Click search button
@@ -68,68 +69,53 @@ describe("Filter and Search", function() {
         expect(mockErrorElement.classList.contains('hide')).toBe(false);
     });
 
-     it("should return true and show error when select is invalid", function() {
+    it("should return true and show error when select is invalid", function() {
         const result = isValidInput(mockSelectElement.type, mockSelectElement, 'name');
         expect(result).toBe(true);
         expect(mockErrorElement.classList.contains('show')).toBe(false);
         expect(mockErrorElement.classList.contains('hide')).toBe(true);
     });
+
+    it("should return results containing 'margarita' when name filter is selected", async function() {
+        const searchPath = 'search.php?s=';
+        const query = 'margarita';
+        const results = await searchDrinks(searchPath, query);
+        const drinks = results['drinks'];
+        expect(results).toBeDefined();
+        expect(drinks.length).toBeGreaterThan(0);
+        drinks.forEach(drink => {
+            expect(drink.strDrink.toLowerCase()).toContain('margarita');
+        });
+    });
+
+    it("should return results when filtering by ingredients", async function() {
+        // This endpoint only provides id, name, and image so we should just check there are results.
+        const searchPath = 'filter.php?i=';
+        const query = 'vodka';
+        const results = await searchDrinks(searchPath, query);
+        const drinks = results['drinks'];
+        expect(results).toBeDefined();
+        expect(drinks.length).toBeGreaterThan(0);
+    });
 });
 
+//     it("should return a list of results with name and image", async function() {
+//         const results = await searchDrinks('margarita');
+//         expect(results).toBeDefined();
+//         expect(results.length).toBeGreaterThan(0);
+//         results.forEach(drink => {
+//             expect(drink.strDrink).toBeDefined();
+//             expect(drink.strDrinkThumb).toBeDefined();
+//         });
+//     });
 
+//     it("should display an error message when no results are found", async function() {
+//         const results = await searchDrinks('nonexistentdrinkname');
+//         expect(results).toBeNull();
+//         expect(getResultsContainer().innerHTML).toContain('No results found');
+//     });
+// });
 
-
-
-
-
-// // describe("Filter and Search Suite", function() {
-// //     it("should return results containing 'margarita' when name filter is selected", async function() {
-// //        const results = await searchDrinks('margarita');
-// //         expect(results).toBeDefined();
-// //         expect(results.length).toBeGreaterThan(0);
-// //         results.forEach(drink => {
-// //             expect(drink.strDrink.toLowerCase()).toContain('margarita');
-// //         });
-// //     });
-
-// //      it("should return results containing 'vodka' when ingredient filter is selected", async function() {
-// //        const results = await searchDrinks('vodka');
-// //         expect(results).toBeDefined();
-// //         expect(results.length).toBeGreaterThan(0);
-// //         results.forEach(drink => {
-// //             const ingredients = [];
-// //             for (let i = 1; i <= 15; i++) {
-// //                 const ingredient = drink[`strIngredient${i}`];
-// //                 if (ingredient) ingredients.push(ingredient.toLowerCase());
-// //             }
-// //             expect(ingredients).toContain('vodka');
-// //         });    
-// //     });
-
-// //     it("should return a list of results with name and image", async function() {
-// //         const results = await searchDrinks('margarita');
-// //         expect(results).toBeDefined();
-// //         expect(results.length).toBeGreaterThan(0);
-// //         results.forEach(drink => {
-// //             expect(drink.strDrink).toBeDefined();
-// //             expect(drink.strDrinkThumb).toBeDefined();
-// //         });
-// //     });
-
-// //     it("should display an error message when no results are found", async function() {
-// //         const results = await searchDrinks('nonexistentdrinkname');
-// //         expect(results).toBeNull();
-// //         expect(getResultsContainer().innerHTML).toContain('No results found');
-// //     });
-
-// //     it("should display a validation error when input is invalid", function() {
-// //         const invalidInputs = ['', '!', '123', '@#$%'];
-// //         invalidInputs.forEach(input => {
-// //             const validationError = validateInput(input);
-// //             expect(validationError).toBe('Please enter a valid search term.');
-// //         });
-// //     });
-// // });
 
 // // describe("Drink Details Suite", function() {
 // //     it("should display drink details when a drink is clicked from results", async function() {
