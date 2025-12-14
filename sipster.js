@@ -85,6 +85,7 @@ searchButton?.addEventListener('click', async (e) =>{
     // Get drinks and populate with results.
     drinks.forEach((drink) => {
       const getDrink = new Drink({
+          id: drink.idDrink,
           name: drink.strDrink,
           thumb: drink.strDrinkThumb,
         },
@@ -99,3 +100,4 @@ searchButton?.addEventListener('click', async (e) =>{
     console.error('Error', e);
   }
 })
+

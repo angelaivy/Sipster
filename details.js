@@ -1,9 +1,10 @@
+'use strict';
+
 import { searchDrinks  } from './search.js';
 import { Drink } from './Drink.js';
 
-const detailsContainer = document.querySelector('main#drinkDetails');
-
 async function populateDetailsPage() {
+  const detailsContainer = document.querySelector('main#drinkDetails');
   // Populate details container on details page.
   if (detailsContainer) {
     const clickedDrinkName = localStorage.getItem('selectedDrink');
@@ -40,20 +41,26 @@ async function populateDetailsPage() {
           return `${measurement} ${ingredient}`
         })
 
+        // Generate the recipe output for each drink.
         const getRecipe = new Drink({
+            id: selectedDrink.idDrink,
             name: selectedDrink.strDrink,
             thumb: selectedDrink.strDrinkThumb,
             glass: selectedDrink.strGlass,
             instructions: selectedDrink.strInstructions,
           },
-          document.querySelector('#drinkDetails')
+          detailsContainer,
         )
         for (const key in ingredientsWithMeasurements) {
           getRecipe.addIngredient(ingredientsWithMeasurements[key]);
         }
         getRecipe.generateRecipe();
+        getRecipe.addToFavorites();
       });
     }
   }
+
+  
 }
 populateDetailsPage();
+
