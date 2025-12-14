@@ -71,15 +71,18 @@ filterGlassSelect?.addEventListener('change', function() {
 // Click and call the API.
 searchButton?.addEventListener('click', async (e) =>{
   e.preventDefault();
+  isValidInput(inputSelect.type, inputSelect, inputSelect.value);
+  isValidInput(filterSelect.type, filterSelect, filterSelect.value);
   // Clear out the container before the next query.
   resultsContainer.innerText = '';
-  const results = await searchDrinks(path, query);
-  const drinks = results['drinks'];
-  // If there are valid results display the list - should be an array.
-  if (Array.isArray(drinks)) {
+  try {
+    const results = await searchDrinks(path, query);
+    const drinks = results['drinks'];
+ 
     // Generate the unordered list element.
     const drinkList = document.createElement('ul');
-    resultsContainer.prepend(drinkList)
+    resultsContainer.prepend(drinkList);
+
     // Get drinks and populate with results.
     drinks.forEach((drink) => {
       const getDrink = new Drink({
@@ -91,8 +94,10 @@ searchButton?.addEventListener('click', async (e) =>{
       getDrink.generateDrink();
       getDrink.getDrinkName();
     });
-  } else {
-    resultsContainer.innerText = 'No data found, try another search.';
+  
+  } catch(e) {
+    resultsContainer.innerText = 'No data found, please make a selection or try another search.';
+    console.error('Error', e);
   }
 })
 
