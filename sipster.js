@@ -9,8 +9,7 @@ const inputSelect = document.getElementById('searchInput'),
       filterPrefSelect = document.getElementById('selectPreferenceFilter'),
       filterGlassSelect = document.getElementById('selectGlassFilter'),
       resultsContainer = document.getElementById('results'),
-      searchButton = document.querySelector('[type="submit"]'),
-      detailsContainer = document.querySelector('main#drinkDetails');
+      searchButton = document.querySelector('[type="submit"]');
 let query,
     path;
     
@@ -100,51 +99,3 @@ searchButton?.addEventListener('click', async (e) =>{
     console.error('Error', e);
   }
 })
-
-// Populate details container on details page.
-if (detailsContainer) {
-  const clickedDrinkName = localStorage.getItem('selectedDrink');
-  let selectedDrinks = [];
-  try {
-    // There could be multiple drinks that use name.
-    const results = await searchDrinks('search.php?s=', `${clickedDrinkName}`);
-    selectedDrinks = results['drinks'];
-  } catch(e) {
-    console.log('Drink query invalid.');
-  }
-
-  // If there are valid results display the list - should be an array.
-  if (Array.isArray(selectedDrinks)) {
-    selectedDrinks.forEach((selectedDrink) => {
-      let ingredients = [];
-      let measurements = [];
-
-      // Get the ingredients/measurements if they have a value.
-      for (const key in selectedDrink) {
-        if (key.startsWith('strIngredient') && selectedDrink[key]) {
-          ingredients.push(selectedDrink[key]);
-        }
-        if (key.startsWith('strMeasure') && selectedDrink[key]) {
-          measurements.push(selectedDrink[key])
-        }
-      }
-
-      const ingredientsWithMeasurements = ingredients.map((item, index) => {
-        return `${measurements[index]} ${item}`
-      })
-
-      const getRecipe = new Drink({
-          name: selectedDrink.strDrink,
-          thumb: selectedDrink.strDrinkThumb,
-          glass: selectedDrink.strGlass,
-          instructions: selectedDrink.strInstructions,
-        },
-        document.querySelector('#drinkDetails')
-      )
-      for (const key in ingredientsWithMeasurements) {
-        getRecipe.addIngredient(ingredientsWithMeasurements[key]);
-      }
-      getRecipe.generateRecipe();
-    });
-  }
-}
