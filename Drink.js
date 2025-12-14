@@ -37,9 +37,6 @@ export class Drink {
         <h3>Instructions</h3>
         <p>${this.instructions}</p>
       </div>
-      <div class="addToFavorites">
-        <button id="btn-${this.id}" class="favoritesBtn">Add to favorites</button>
-      </div>
     `
     // Generate the ingredients and measurements as list items.
     this.container.insertAdjacentHTML('beforeend', detailRecipe);
@@ -54,25 +51,6 @@ export class Drink {
   // Add ingredients + measurements to the array.
   addIngredient(ingredient) {
     this.ingredients.push(ingredient);
-  }
-
-  // Add drink to favorites.
-  addToFavorites() {
-    // Get class buttons by their ID. In rare cases there will be multiple drinks 
-    // under one name. e.g. Addison includes 'Addison' and 'Addison Special';
-    // This ensures we can individually add the separate drinks to favorites.
-    const favoritesBtn = document.querySelector(`#btn-${this.id}`);
-    favoritesBtn.addEventListener('click', () => {
-      const existingFaves = localStorage.getItem('favoriteDrinks');
-      // Because localStorage is string data, we need to modify it to be an 
-      // array to push values to, and then parse it back into a string for storing.
-      const favesArr = JSON.parse(existingFaves) || [];
-      if (!favesArr.includes(this.name)) {
-        favesArr.push(this.name);
-        const updatedFaves = JSON.stringify(favesArr);
-        localStorage.setItem('favoriteDrinks', updatedFaves);
-      }
-    })
   }
 
   // Get drink name and save in localstorage for later use.

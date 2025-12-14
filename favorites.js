@@ -2,6 +2,7 @@
 
 import { searchDrinks  } from './search.js';
 import { Drink } from './Drink.js';
+import { FavoritesManager } from './FavoritesManager.js';
 
 function populateFavoritesPage() {
   const favoritesContainer = document.querySelector('main#favoriteSips');
@@ -29,6 +30,8 @@ function populateFavoritesPage() {
             );
             getDrink.generateDrink();
             getDrink.getDrinkName();
+            const favoritesManager = new FavoritesManager(getDrink.id, getDrink.name);
+            favoritesManager.removeFromFavorites();
           });
         
         } catch(e) {

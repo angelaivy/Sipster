@@ -2,6 +2,7 @@
 
 import { searchDrinks  } from './search.js';
 import { Drink } from './Drink.js';
+import { FavoritesManager } from './FavoritesManager.js';
 
 async function populateDetailsPage() {
   const detailsContainer = document.querySelector('main#drinkDetails');
@@ -55,7 +56,8 @@ async function populateDetailsPage() {
           getRecipe.addIngredient(ingredientsWithMeasurements[key]);
         }
         getRecipe.generateRecipe();
-        getRecipe.addToFavorites();
+        const favoritesManager = new FavoritesManager(getRecipe.id, getRecipe.name);
+        favoritesManager.addToFavorites();
       });
     }
   }
