@@ -1,30 +1,29 @@
 'use strict';
 
 import { searchDrinks  } from './search.js';
-import { isValidInput  } from './validation.js';
+import { isValidInput, showInput  } from './validation.js';
 import { Drink } from './Drink.js';
 
 const inputSelect = document.getElementById('searchInput'),
       filterSelect = document.getElementById('selectFilter'),
+      filterPrefSelect = document.getElementById('selectPreferenceFilter'),
+      filterGlassSelect = document.getElementById('selectGlassFilter'),
       resultsContainer = document.getElementById('results'),
       searchButton = document.querySelector('[type="submit"]'),
       detailsContainer = document.querySelector('main#drinkDetails');
 let query,
     path;
+    
 
-// Get value from the input.
-inputSelect?.addEventListener('change', () => {
-  const textValue = inputSelect.value;
-  if (isValidInput(inputSelect.type, inputSelect, textValue)) {
-    query = textValue;
+// Get values from form elements.
+inputSelect?.addEventListener('change', function() {
+  if (isValidInput(this.type, this, this.value)) {
+    query = this.value;
   }
 });
-
-// Get values from the filter.
-filterSelect?.addEventListener('change', () => {
-  const selection = filterSelect.value;
-  if (isValidInput(filterSelect.type, filterSelect, selection)) {
-    switch (selection) {
+filterSelect?.addEventListener('change', function() {
+  if (isValidInput(this.type, this, this.value)) {
+    switch (this.value) {
       case 'name':
         path = 'search.php?s=';
         break;
@@ -43,16 +42,39 @@ filterSelect?.addEventListener('change', () => {
       default:
         break;
     }
+
+    switch (this.value) {
+      case 'name':
+      case 'firstLetter':
+      case 'ingredient':
+        showInput(this.value, inputSelect, [filterPrefSelect, filterGlassSelect]);
+        break;
+      case 'alcoholic':
+        showInput(this.value, filterPrefSelect, [inputSelect, filterGlassSelect]);
+        break;
+      case 'glass':
+        showInput(this.value, filterGlassSelect, [filterPrefSelect, inputSelect])
+    }
+  }
+});
+filterPrefSelect?.addEventListener('change', function() {
+  if (isValidInput(this.type, this, this.value)) {
+    query = this.value;
+  }
+});
+filterGlassSelect?.addEventListener('change', function() {
+  if (isValidInput(this.type, this, this.value)) {
+    query = this.value;
   }
 });
 
+// Click and call the API.
 searchButton?.addEventListener('click', async (e) =>{
   e.preventDefault();
   // Clear out the container before the next query.
   resultsContainer.innerText = '';
   const results = await searchDrinks(path, query);
   const drinks = results['drinks'];
-  console.log('insearchbtn', results);
   // If there are valid results display the list - should be an array.
   if (Array.isArray(drinks)) {
     // Generate the unordered list element.
@@ -82,7 +104,6 @@ if (detailsContainer) {
     // There could be multiple drinks that use name.
     const results = await searchDrinks('search.php?s=', `${clickedDrinkName}`);
     selectedDrinks = results['drinks'];
-    console.log(selectedDrinks);
   } catch(e) {
     console.log('Drink query invalid.');
   }
@@ -90,7 +111,6 @@ if (detailsContainer) {
   // If there are valid results display the list - should be an array.
   if (Array.isArray(selectedDrinks)) {
     selectedDrinks.forEach((selectedDrink) => {
-      console.log('selectedDrink', selectedDrink)
       let ingredients = [];
       let measurements = [];
 
@@ -105,7 +125,7 @@ if (detailsContainer) {
       }
 
       const ingredientsWithMeasurements = ingredients.map((item, index) => {
-        return `${measurements[index]}${item}`
+        return `${measurements[index]} ${item}`
       })
 
       const getRecipe = new Drink({

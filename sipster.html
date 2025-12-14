@@ -30,20 +30,51 @@
           <option value="firstLetter">First Letter</option>
           <option value="ingredient">Ingredient</option>
           <option value="glass">Glass Type</option>
-          <option value="alcoholic">Alcoholic/Non-Alcoholic/Optional</option>
+          <option value="alcoholic">Alcohol Preference</option>
         </select>
         <div class="errorMessage hide" aria-live="assertive">Please select a filter.</div>
       </div>
       
-      <div class="formContainer">
+      <div class="formContainer hide">
         <label for="searchInput">Search for a cocktail:</label>
         <input type="text" id="searchInput" name="search-input" required />
         <div class="errorMessage hide" aria-live="assertive">Please enter a valid search term.</div>
       </div>
+
+      <div class="formContainer hide">
+        <label for="selectPreferenceFilter">Choose your preference:</label>
+        <select id="selectPreferenceFilter" name="select-filter" required>
+          <option value="">- Select -</option>
+          <option value="alcoholic">Alcoholic</option>
+          <option value="non_alcoholic">Non alcoholic</option>
+          <option value="optional_alcohol">Optional alcohol</option>
+        </select>
+        <div class="errorMessage hide" aria-live="assertive">Please select a preference.</div>
+      </div>
+
+      <div class="formContainer hide">
+        <label for="selectGlassFilter">Choose your preference:</label>
+        <select id="selectGlassFilter" name="select-filter" required>
+          <option value="">- Select -</option>
+          <option value="beer_glass">Beer Glass</option>
+          <option value="beer_mug">Beer mug</option>
+          <option value="beer_pilsner">Beer pilsner</option>
+          <option value="brandy_snifter">Brandy snifter</option>
+          <option value="champagne_flute">Champagne flute</option>
+          <option value="cocktail_glass">Cocktail glass</option>
+          <option value="coffee_mug">Coffee mug</option>
+          <option value="highball_glass">Highball glass</option>
+          <option value="margarita_glass">Margarita glass</option>
+          <option value="old-fashioned_glass">Old-fashioned glass</option>
+          <option value="shot_glass">Shot glass</option>
+          <option value="whiskey_glass">Whiskey Glass</option>
+          <option value="wine_glass">Wine Glass</option>
+        </select>
+        <div class="errorMessage hide" aria-live="assertive">Please select a preference.</div>
+      </div>
       
       <button type="submit">Search</button>
     </form>
-    <button id="surpriseSip">Surprise Sip</button>
      <section id="results" aria-live="polite"></section>
   </main>
 

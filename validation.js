@@ -28,4 +28,17 @@ const errorMessageContainer =  el.parentElement.querySelector('.errorMessage');
   }
 }
 
-export { isValidInput }
+const showInput = (value, inputToShow, inputsToHide) => {
+  inputsToHide.forEach((input) => {
+    input.parentElement.classList.remove('show');
+    input.parentElement.classList.add('hide');
+  })
+  
+  if (value ) {
+    inputToShow.parentElement.classList.remove('hide');
+    inputToShow.parentElement.classList.add('show');
+  } 
+
+}
+
+export { isValidInput, showInput }
