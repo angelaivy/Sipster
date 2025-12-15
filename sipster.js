@@ -1,6 +1,6 @@
 'use strict';
 
-import { searchDrinks  } from './search.js';
+import { doApiRequest  } from './api.js';
 import { isValidInput, showInput  } from './validation.js';
 import { Drink } from './Drink.js';
 
@@ -75,7 +75,7 @@ searchButton?.addEventListener('click', async (e) =>{
   // Clear out the container before the next query.
   resultsContainer.innerText = '';
   try {
-    const results = await searchDrinks(path, query);
+    const results = await doApiRequest(path, query);
     const drinks = results['drinks'];
  
     // Generate the unordered list element.

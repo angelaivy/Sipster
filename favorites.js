@@ -1,6 +1,6 @@
 'use strict';
 
-import { searchDrinks  } from './search.js';
+import { doApiRequest  } from './api.js';
 import { Drink } from './Drink.js';
 import { FavoritesManager } from './FavoritesManager.js';
 
@@ -16,7 +16,7 @@ function populateFavoritesPage() {
 
     favoriteDrinks.forEach(async (fave) => {
       try {
-          const results = await searchDrinks('search.php?s=', `${fave}`);
+          const results = await doApiRequest('search.php?s=', `${fave}`);
           const drinks = results['drinks'];
       
           // Get drinks and populate with results.

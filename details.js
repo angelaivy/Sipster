@@ -1,6 +1,6 @@
 'use strict';
 
-import { searchDrinks  } from './search.js';
+import { doApiRequest  } from './api.js';
 import { Drink } from './Drink.js';
 import { FavoritesManager } from './FavoritesManager.js';
 
@@ -12,7 +12,7 @@ async function populateDetailsPage() {
     let selectedDrinks = [];
     try {
       // There could be multiple drinks that use name.
-      const results = await searchDrinks('search.php?s=', `${clickedDrinkName}`);
+      const results = await doApiRequest('search.php?s=', `${clickedDrinkName}`);
       selectedDrinks = results['drinks'];
     } catch(e) {
       console.log('Drink query invalid.');

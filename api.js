@@ -3,9 +3,9 @@
   const apiKey = '1',
         baseUrl = `https://www.thecocktaildb.com/api/json/v1/${apiKey}/`;
  
-  const doApiRequest = async (pathWithQuery = '') => {
+  const doApiRequest = async (searchPath, queryParam) => {
     let endpoint = '';
-    (baseUrl && pathWithQuery) ? endpoint = `${baseUrl}${pathWithQuery}` : endpoint = '';
+    (baseUrl && searchPath && queryParam) ? endpoint = `${baseUrl}${searchPath}${queryParam}` : endpoint = '';
     try {
       let response = await fetch(endpoint);
       if (!response.ok) {
@@ -20,4 +20,4 @@
     }
   }
 
-export {doApiRequest }
+export { doApiRequest }
