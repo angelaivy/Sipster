@@ -5,22 +5,26 @@ const isValidInput = (type, el, value) => {
   if (type === 'select-one') {
     if (value) {
       errorMessageContainer && hideEl(errorMessageContainer);
+      el.classList.remove('error');
       return true;
     } else {
-      errorMessageContainer && showEl(errorMessageContainer)
+      errorMessageContainer && showEl(errorMessageContainer);
+      el.classList.add('error');
       return false;
     }
   }
 
   if (type === 'text') {
     // Text input should have 1 character or more and should not contain @#$%!*&().
-    const regex = /^[^@#$%!*&()]+$/;
-    if (value.match(regex)) {
-      errorMessageContainer && hideEl(errorMessageContainer);
-      return true;
-    } else {
-      errorMessageContainer &&  showEl(errorMessageContainer);
+    const invalidRegex = /[@#$%!*&()]/;
+    if (invalidRegex.test(value)) {
+      errorMessageContainer && showEl(errorMessageContainer);
+      el.classList.add('error');
       return false;
+    } else {
+      errorMessageContainer && hideEl(errorMessageContainer);
+      el.classList.remove('error');
+      return true;
     }
   }
 }
@@ -28,9 +32,9 @@ const isValidInput = (type, el, value) => {
 const showInput = (value, inputToShow, inputsToHide) => {
   // Reset and hide.
   inputsToHide.forEach((input) => {
-    hideEl(input?.parentElement);
+    hideEl(input.parentElement);
   })
-  
+
   if (value ) {
     showEl(inputToShow?.parentElement);
   } 

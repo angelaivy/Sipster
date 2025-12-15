@@ -20,7 +20,11 @@ inputSelect?.addEventListener('change', function() {
     query = this.value;
   }
 });
+
 filterSelect?.addEventListener('change', function() {
+  if (this.value === '') {
+    showInput(this.value, null, [filterGlassSelect, filterPrefSelect, inputSelect]);
+  }
   if (isValidInput(this.type, this, this.value)) {
     switch (this.value) {
       case 'name':
@@ -52,15 +56,19 @@ filterSelect?.addEventListener('change', function() {
         showInput(this.value, filterPrefSelect, [inputSelect, filterGlassSelect]);
         break;
       case 'glass':
-        showInput(this.value, filterGlassSelect, [filterPrefSelect, inputSelect])
+        showInput(this.value, filterGlassSelect, [filterPrefSelect, inputSelect]);
+      default:
+        break;
     }
   }
 });
+
 filterPrefSelect?.addEventListener('change', function() {
   if (isValidInput(this.type, this, this.value)) {
     query = this.value;
   }
 });
+
 filterGlassSelect?.addEventListener('change', function() {
   if (isValidInput(this.type, this, this.value)) {
     query = this.value;
