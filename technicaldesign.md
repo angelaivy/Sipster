@@ -32,10 +32,8 @@ Specs:
   - Satisfies #1, #2.6
 - Button to enter selection
   - Satisfies #1
-- Separate button to generate a random cocktail
-  - Satisfies #1
 - A list populates with the basic data 
-  - Name, Glass, Instructions, Glass, Image, Ingrediants, Measurements
+  - Name, Glass, Instructions, Glass, Image, Ingredients, Measurements
   - Uses classes: Drink Model to handle drink output and formatting, Favorites Manager to handle favorite drinks section.
   - Favorites Manager will manage storing, retrieving, and removing favorites from localStorage.
   - Drink Model will encapsulate parsing and formatting of cocktail data from the API.
@@ -44,7 +42,8 @@ Specs:
   - Satisfies #1, #2.5
 - Favorites Section, select the name and the drink shows
  - Remove drink from favorites
-- Bonus (if time) - the API provides localized instructions. Have a language selector to change the localized instructions. 
+- Stretch Goal (if time) - the API provides localized instructions. Have a language selector to change the localized instructions. 
+- Stretch Goal (if time) - Separate button to generate a random cocktail
 
 ## UX
 
