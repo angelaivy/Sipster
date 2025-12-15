@@ -1,5 +1,7 @@
 :root {
-  --accent: #e63946;
+  --accent: #B87333; /* copper */
+  --darkbg: #1f2933; /* dark slate */
+  --error:  #e63946; 
 }
 
 html, body {
@@ -10,6 +12,18 @@ html, body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+.appContainer {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .appContainer {
+    padding: 2.5rem;
+  }
 }
 
 main {
@@ -25,7 +39,7 @@ main {
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   background: #f7f7f9;
-  color: #222;
+  color: var(--darkbg);
   line-height: 1.5;
 }
 
@@ -38,29 +52,40 @@ a {
   color: inherit;
 }
 
+li {
+  list-style-type: none;
+}
+
 button {
   padding: 0.5rem 0.75rem;
   font-size: 0.95rem;
   border: 1px solid #ccc;
   border-radius: 6px;
 }
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
 /* HEADER */
 
 header {
-  background: #1f2933; /* dark slate */
+  background: var(--darkbg);
   color: white;
-  padding: 1rem 1.5rem;
 }
 
 header li {
-  list-style-type: none;
   display: inline-block;
-  margin: 20px 20px 20px 0;
+  margin: 2rem 2rem 0 0;
 }
 
 header h1 {
   margin-top: 25px;
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 700;
   text-align: center;
 }
@@ -72,7 +97,7 @@ header h1 {
 
 /* Footer */
 footer {
-  background: #1f2933;
+  background: var(--darkbg);
   color: white;
   padding: 1rem;
   text-align: center;
@@ -81,7 +106,6 @@ footer {
 /* Main page body */
 form {
   background: white;
-  padding: 2rem 1.5rem;
   border-bottom: 1px solid #ddd;
 }
 
@@ -90,7 +114,7 @@ form select,
 form button {
   padding: 0.5rem 0.75rem;
   font-size: 0.95rem;
-  border: 1px solid #ccc;
+  border: 1px solid var(--accent);
   border-radius: 6px;
   margin: 10px 0;
 }
@@ -111,45 +135,29 @@ form button:hover {
 }
 
 /* Error styles */
-input:invalid,
-select:invalid,
 .error {
-  border: 2px dashed var(--accent);
+  border: 2px dashed var(--error);
 }
 
 input.error:focus-visible ,
 select.error:focus-visible {
-  outline: 1px solid var(--accent);
+  outline: 1px solid var(--error);
 }
 
 .errorMessage {
-  color:  var(--accent);
+  color:  var(--error);
   font-size: 0.9em;
   margin-top: 5px;
 }
 
-.hide {
-  display: none;
-}
-
-.show {
-  display: block;
-}
-
-#results {
-  padding: 1.5rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 1.25rem;
-}
-
+/* Search results */
 .detailItem {
   background: white;
   border-radius: 10px;
-  overflow: hidden;
   box-shadow: 0 4px 10px rgba(0,0,0,0.08);
   cursor: pointer;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
+  margin-bottom: 1rem;
 }
 
 .detailItem:hover {
@@ -162,10 +170,26 @@ select.error:focus-visible {
   object-fit: cover;
 }
 
-.detailItem h3 {
+.detailItem h2 {
   padding: 0.75rem;
-  font-size: 1rem;
+  font-size: 1.5rem;
   text-align: center;
+}
+
+@media (min-width: 640px) {
+  #results ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1.25rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .flex {
+    display: flex;
+    gap: 3rem;
+    flex-wrap: wrap; 
+  }
 }
 
 /* Recipe */

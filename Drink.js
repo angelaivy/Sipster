@@ -13,8 +13,8 @@ export class Drink {
       const detailList = `
         <li id="detailItem-${this.id}" class="detailItem">
           <a href="details.html">
-            <h3>${this.name}</h3>
-            <img src="${this.thumb}/small" alt=""/>
+            <h2>${this.name}</h2>
+            <img src="${this.thumb}" alt=""/>
           </a>
         </li>
       `
@@ -27,7 +27,7 @@ export class Drink {
     const detailRecipe = `
       <div id="drink-${this.id}" class="detailRecipe">
         <h2>${this.name}</h2>
-        <img src="${this.thumb}/small" alt=""/>
+        <img src="${this.thumb}" alt=""/>
         
         <h3>What you'll need</h3>
         <ul class="ingredients">
