@@ -1,10 +1,129 @@
+:root {
+  --accent: #e63946;
+}
+
+html, body {
+  height: 100%;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #f7f7f9;
+  color: #222;
+  line-height: 1.5;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.95rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+/* HEADER */
+
+header {
+  background: #1f2933; /* dark slate */
+  color: white;
+  padding: 1rem 1.5rem;
+}
+
+header li {
+  list-style-type: none;
+  display: inline-block;
+  margin: 20px 20px 20px 0;
+}
+
+header h1 {
+  margin-top: 25px;
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.tagline {
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Footer */
+footer {
+  background: #1f2933;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+/* Main page body */
+form {
+  background: white;
+  padding: 2rem 1.5rem;
+  border-bottom: 1px solid #ddd;
+}
+
+form input,
+form select,
+form button {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.95rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin: 10px 0;
+}
+
+form label {
+  display: block;
+}
+
+form button {
+  background: var(--accent);
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+form button:hover {
+  opacity: 0.9;
+}
+
 /* Error styles */
-input:invalid {
-  border: 2px dashed red;
+input:invalid,
+select:invalid,
+.error {
+  border: 2px dashed var(--accent);
+}
+
+input.error:focus-visible ,
+select.error:focus-visible {
+  outline: 1px solid var(--accent);
 }
 
 .errorMessage {
-  color: red;
+  color:  var(--accent);
   font-size: 0.9em;
   margin-top: 5px;
 }
@@ -16,3 +135,92 @@ input:invalid {
 .show {
   display: block;
 }
+
+#results {
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.25rem;
+}
+
+.detailItem {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.detailItem:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.detailItem img {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.detailItem h3 {
+  padding: 0.75rem;
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* Recipe */
+#drinkDetails {
+  max-width: 900px;
+  margin: 2rem auto;
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+
+.detailRecipe {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.detailRecipe img {
+  width: 280px;
+  border-radius: 10px;
+}
+
+.detailRecipe h2 {
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.detailRecipe h3 {
+  margin-bottom: 0.5rem;
+  border-bottom: 2px solid var(--accent);
+  display: inline-block;
+}
+
+.ingredients {
+  margin-top: 1.5rem;
+}
+
+/* Favorites */
+#favoriteSips {
+  padding: 1.5rem;
+  background: #fff;
+  border-top: 1px solid #ddd;
+}
+
+#favoriteSips h2 {
+  margin-bottom: 1rem;
+}
+
+#favoriteSips ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1rem;
+}
+
+
+
+
