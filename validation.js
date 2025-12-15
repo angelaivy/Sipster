@@ -16,8 +16,8 @@ const isValidInput = (type, el, value) => {
 
   if (type === 'text') {
     // Text input should have 1 character or more and should not contain @#$%!*&().
-    const invalidRegex = /[@#$%!*&()]/;
-    if (invalidRegex.test(value)) {
+    const invalidRegex = /^[A-Za-z0-9 -]+$/;
+    if (!invalidRegex.test(value)) {
       errorMessageContainer && showEl(errorMessageContainer);
       el.classList.add('error');
       return false;
@@ -40,6 +40,12 @@ const showInput = (value, inputToShow, inputsToHide) => {
   } 
 }
 
+const validateIfVisible = (el) => {
+  if (!el) return true;           
+  if (el.closest('.hide')) return true;
+  return isValidInput(el.type, el, el.value); 
+};
+
 function showEl(el) {
   el.classList.remove('hide');
   el.classList.add('show');
@@ -50,4 +56,4 @@ function hideEl(el) {
   el.classList.add('hide');
 }
 
-export { isValidInput, showInput }
+export { isValidInput, showInput, validateIfVisible }

@@ -1,7 +1,7 @@
 'use strict';
 
 import { doApiRequest  } from './api.js';
-import { isValidInput, showInput  } from './validation.js';
+import { isValidInput, showInput, validateIfVisible } from './validation.js';
 import { Drink } from './Drink.js';
 
 const inputSelect = document.getElementById('searchInput'),
@@ -78,8 +78,19 @@ filterGlassSelect?.addEventListener('change', function() {
 // Click and call the API.
 searchButton?.addEventListener('click', async (e) =>{
   e.preventDefault();
-  isValidInput(inputSelect.type, inputSelect, inputSelect.value);
-  isValidInput(filterSelect.type, filterSelect, filterSelect.value);
+
+  // Don't call the API if there are no visible or valid selections.
+  if (!isValidInput(filterSelect.type, filterSelect, filterSelect.value)) {
+    return;
+  } 
+  if (
+  !validateIfVisible(inputSelect) ||
+  !validateIfVisible(filterPrefSelect) ||
+  !validateIfVisible(filterGlassSelect)
+  ) {
+    return;
+  }
+
   // Clear out the container before the next query.
   resultsContainer.innerText = '';
   try {
@@ -89,7 +100,10 @@ searchButton?.addEventListener('click', async (e) =>{
     // Generate the unordered list element.
     const drinkList = document.createElement('ul');
     resultsContainer.prepend(drinkList);
-
+    
+    if (!drinks) {
+      throw new Error('No drink data available.')
+    }
     // Get drinks and populate with results.
     drinks.forEach((drink) => {
       const getDrink = new Drink({
@@ -105,7 +119,7 @@ searchButton?.addEventListener('click', async (e) =>{
   
   } catch(e) {
     resultsContainer.innerText = 'No data found, please make a selection or try another search.';
-    console.error('Error', e);
+    console.error(e);
   }
 })
 
