@@ -56,8 +56,10 @@ export class Drink {
   // Get drink name and save in localstorage for later use.
   getDrinkName() {
     const drinkLink = document.querySelector(`#detailItem-${this.id} a`);
-    drinkLink.addEventListener('click', () => {
-      localStorage.setItem('selectedDrink', this.name);
+    if (drinkLink) {
+       drinkLink.addEventListener('click', () => {
+        localStorage.setItem('selectedDrink', this.name);
     })
+    }
   }
 }

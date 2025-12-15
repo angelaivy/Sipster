@@ -65,7 +65,7 @@ describe('Drink Details', function() {
     it('should have expected drink recipe html', function() {
         const drink = new Drink({
                 id: 1234,
-                name: 'mimosa',
+                name: 'Mimosa',
                 thumb: 'https://www.thecocktaildb.com/images/media/drink/juhcuu1504370685.jpg',
                 glass: 'champagne flute',
                 instructions: 'pour champagne until the glass is mostly full, splash orange juice'
@@ -78,7 +78,7 @@ describe('Drink Details', function() {
         drink.generateRecipe();
                
         expect(detailList.innerHTML).toContain('<div id="drink-1234" class="detailRecipe">');
-        expect(detailList.innerHTML).toContain('<h2>mimosa</h2>');
+        expect(detailList.innerHTML).toContain('<h2>Mimosa</h2>');
         expect(detailList.innerHTML).toContain('<img src="https://www.thecocktaildb.com/images/media/drink/juhcuu1504370685.jpg/small" alt="">');
          expect(detailList.innerHTML).toContain('<p>pour champagne until the glass is mostly full, splash orange juice</p>');
         expect(detailList.innerHTML).toContain('<li>champagne flute</li>');
@@ -96,6 +96,11 @@ describe('Drink Details', function() {
         )
         drink.generateDrink();
         drink.getDrinkName();
+        const drinkLink = document.getElementById('detailItem-1234').firstElementChild;
+        drinkLink.addEventListener('click', (e) => {
+            e.preventDefault();
+        })
+        drinkLink.click();
         expect(localStorage.getItem('selectedDrink')).toBe('Mimosa');
     })
 });
@@ -121,7 +126,6 @@ describe('Favorites Manager', function() {
                 instructions: 'pour champagne until the glass is mostly full, splash orange juice'
             },
             detailList,
-           
         )
         drink.addIngredient('champange');
         drink.addIngredient('orange juice');

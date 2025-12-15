@@ -39,28 +39,32 @@ export class FavoritesManager {
   }
 
   removeFromFavorites() {
-    const btn = `
+    const btnExists = document.querySelector(`#btn-${this.id}`);
+    if (!btnExists) {
+      const btn = `
       <div class="removeFromFavorites">
         <button id="btn-${this.id}" class="favoritesBtn">Remove from favorites</button>
       </div>
     `
-    const favoritesItem = document.querySelector(`#detailItem-${this.id}`);
-    favoritesItem.insertAdjacentHTML('beforeend', btn);
-    const favoritesBtn = favoritesItem.querySelector(`#btn-${this.id}`);
-    
-    favoritesBtn.addEventListener('click', (e) => {
-      const existingFaves = localStorage.getItem('favoriteDrinks');
-      // Because localStorage is string data, we need to modify it to be an 
-      // array so we can remove the selected drink, and then parse
-      // it back into a string for storing.
-      const favesArr = JSON.parse(existingFaves) || [];
-      const updatedArr = favesArr.filter((item) => {
-        return item !== this.name;
-      })
-      const updatedFaves = JSON.stringify(updatedArr);
-      localStorage.setItem('favoriteDrinks', updatedFaves);
-      // Remove the drink from favorites.
-      document.querySelector(`#detailItem-${this.id}`).remove();
-    })
+      const favoritesItem = document.querySelector(`#detailItem-${this.id}`);
+      favoritesItem.insertAdjacentHTML('beforeend', btn);
+      const favoritesBtn = favoritesItem.querySelector(`#btn-${this.id}`);
+      if (favoritesBtn) {
+        favoritesBtn.addEventListener('click', (e) => {
+          const existingFaves = localStorage.getItem('favoriteDrinks');
+          // Because localStorage is string data, we need to modify it to be an 
+          // array so we can remove the selected drink, and then parse
+          // it back into a string for storing.
+          const favesArr = JSON.parse(existingFaves || '[]');
+          const updatedArr = favesArr.filter((item) => {
+            return item !== this.name;
+          })
+          const updatedFaves = JSON.stringify(updatedArr);
+          localStorage.setItem('favoriteDrinks', updatedFaves);
+          // Remove the drink from favorites.
+          document.querySelector(`#detailItem-${this.id}`).remove();
+        })
+      }
+    }
   }
 }
