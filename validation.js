@@ -4,12 +4,10 @@ const isValidInput = (type, el, value) => {
 
   if (type === 'select-one') {
     if (value) {
-      errorMessageContainer?.classList.remove('show');
-      errorMessageContainer?.classList.add('hide');
+      errorMessageContainer && hideEl(errorMessageContainer);
       return true;
     } else {
-      errorMessageContainer?.classList.remove('hide');
-      errorMessageContainer?.classList.add('show');
+      errorMessageContainer && showEl(errorMessageContainer)
       return false;
     }
   }
@@ -18,28 +16,34 @@ const isValidInput = (type, el, value) => {
     // Text input should have 1 character or more and should not contain @#$%!*&().
     const regex = /^[^@#$%!*&()]+$/;
     if (value.match(regex)) {
-      errorMessageContainer?.classList.remove('show');
-      errorMessageContainer?.classList.add('hide');
+      errorMessageContainer && hideEl(errorMessageContainer);
       return true;
     } else {
-      errorMessageContainer?.classList.remove('hide');
-      errorMessageContainer?.classList.add('show');
+      errorMessageContainer &&  showEl(errorMessageContainer);
       return false;
     }
   }
 }
 
 const showInput = (value, inputToShow, inputsToHide) => {
+  // Reset and hide.
   inputsToHide.forEach((input) => {
-    input.parentElement.classList.remove('show');
-    input.parentElement.classList.add('hide');
+    hideEl(input?.parentElement);
   })
   
   if (value ) {
-    inputToShow.parentElement.classList.remove('hide');
-    inputToShow.parentElement.classList.add('show');
+    showEl(inputToShow?.parentElement);
   } 
+}
 
+function showEl(el) {
+  el.classList.remove('hide');
+  el.classList.add('show');
+}
+
+function hideEl(el) {
+  el.classList.remove('show');
+  el.classList.add('hide');
 }
 
 export { isValidInput, showInput }
