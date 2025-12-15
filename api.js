@@ -5,7 +5,9 @@
  
   const doApiRequest = async (searchPath, queryParam) => {
     let endpoint = '';
-    (baseUrl && searchPath && queryParam) ? endpoint = `${baseUrl}${searchPath}${queryParam}` : endpoint = '';
+    (baseUrl && searchPath && queryParam) 
+    ? endpoint = `${baseUrl}${searchPath}${queryParam}` 
+    : endpoint = '';
     try {
       let response = await fetch(endpoint);
       if (!response.ok) {
