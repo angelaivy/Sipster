@@ -182,6 +182,17 @@ select.error:focus-visible {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 1.25rem;
   }
+  .detailItem a {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .detailItem img {
+    margin-top: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    width: 100%;
+  }
 }
 
 @media (min-width: 768px) {
@@ -189,6 +200,11 @@ select.error:focus-visible {
     display: flex;
     gap: 3rem;
     flex-wrap: wrap; 
+  }
+  #results ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 2rem;
   }
 }
 
