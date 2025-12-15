@@ -44,7 +44,7 @@ export class Drink {
     const glass = detailRecipeContainer.querySelector('.ingredients > li:first-child');
     this.ingredients.forEach((ingredient) => {
       const newIngredient = `<li>${ingredient}</li>`;
-      glass.insertAdjacentHTML('beforeend', newIngredient);
+      glass.insertAdjacentHTML('afterend', newIngredient);
     });
   }
 

@@ -51,14 +51,15 @@ export class FavoritesManager {
     favoritesBtn.addEventListener('click', (e) => {
       const existingFaves = localStorage.getItem('favoriteDrinks');
       // Because localStorage is string data, we need to modify it to be an 
-      // array to push values to, and then parse it back into a string for storing.
+      // array so we can remove the selected drink, and then parse
+      // it back into a string for storing.
       const favesArr = JSON.parse(existingFaves) || [];
       const updatedArr = favesArr.filter((item) => {
         return item !== this.name;
       })
-     
       const updatedFaves = JSON.stringify(updatedArr);
       localStorage.setItem('favoriteDrinks', updatedFaves);
+      // Remove the drink from favorites.
       document.querySelector(`#detailItem-${this.id}`).remove();
     })
   }
