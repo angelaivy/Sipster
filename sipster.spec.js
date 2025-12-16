@@ -134,6 +134,14 @@ describe('Favorites Manager', function() {
         favoritesManager.addToFavorites();
         document.getElementById(`btn-${drink.id}`).click();
         expect(localStorage.getItem('favoriteDrinks')).toContain('1234');
+        // Clean up
+        const existingFaves = localStorage.getItem('favoriteDrinks');
+        const favesArr = JSON.parse(existingFaves || '[]');
+        const updatedArr = favesArr.filter((item) => {
+        return item !== drink.id;
+        })
+        const updatedFaves = JSON.stringify(updatedArr);
+        localStorage.setItem('favoriteDrinks', updatedFaves);
     })
 
     it('removes drink from favorites', function() {

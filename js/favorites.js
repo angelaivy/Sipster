@@ -18,6 +18,10 @@ function populateFavoritesPage() {
       try {
           const results = await doApiRequest('lookup.php?i=', `${fave}`);
           const drinks = results['drinks'];
+
+          if (!drinks) {
+            throw new Error('No drink data available.')
+          }
       
           // Get drinks and populate with results.
           drinks.forEach((drink) => {
@@ -35,7 +39,7 @@ function populateFavoritesPage() {
           });
         
         } catch(e) {
-          favoritesContainer.innerText = 'No data found, please make a selection or try another search.';
+          drinkList.innerText = 'No data found, please make a selection or try another search.';
           console.error('Error', e);
         }
     })
