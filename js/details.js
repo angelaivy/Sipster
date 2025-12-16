@@ -12,6 +12,8 @@ async function populateDetailsPage() {
     let selectedDrinks = [];
     try {
       const results = await doApiRequest('lookup.php?i=', `${clickedDrinkId}`);
+      // Even though we are only requesting one drink, 
+      // the API will return an array with one item.
       selectedDrinks = results['drinks'];
     } catch(e) {
       console.log(`Unable to look up drink id. ${clickedDrinkId}`);
