@@ -1,5 +1,5 @@
 export class FavoritesManager {
-  constructor(id, name) {
+  constructor(id) {
     this.id = id;
   }
 
