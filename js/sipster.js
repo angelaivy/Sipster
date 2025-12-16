@@ -2,7 +2,7 @@
 
 import { doApiRequest  } from './api.js';
 import { isValidInput, showInput, validateIfVisible } from './validation.js';
-import { Drink } from './Drink.js';
+import { Drink } from './Classes/Drink.js';
 
 const inputSelect = document.getElementById('searchInput'),
       filterSelect = document.getElementById('selectFilter'),

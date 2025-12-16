@@ -1,7 +1,7 @@
-import { isValidInput } from './validation.js';
-import { doApiRequest } from './api.js';
-import { Drink } from './Drink.js';
-import { FavoritesManager } from './FavoritesManager.js';
+import { isValidInput } from './js/validation.js';
+import { doApiRequest } from './js/api.js';
+import { Drink } from './js/Classes/Drink.js';
+import { FavoritesManager } from './js/Classes/FavoritesManager.js';
 
 describe("Filter and Search", function() {
     it('should return false for invalid input', function() {

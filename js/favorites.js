@@ -1,8 +1,8 @@
 'use strict';
 
 import { doApiRequest  } from './api.js';
-import { Drink } from './Drink.js';
-import { FavoritesManager } from './FavoritesManager.js';
+import { Drink } from './Classes/Drink.js';
+import { FavoritesManager } from './Classes/FavoritesManager.js';
 
 function populateFavoritesPage() {
   const favoritesContainer = document.querySelector('main#favoriteSips');
