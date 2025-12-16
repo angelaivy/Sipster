@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Sipster: search, discover, and save your favorite cocktails." />
+  <title>Sipster | Drink Details</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="favicon.ico">
+</head>
+<body>
+  <header>
+      <div class="appContainer">
+        <h1>🍸 Sipster</h1>
+        <p class="tagline">Search, discover, and save your favorite cocktails.</p>
+        <navigation>
+          <ul>
+            <li><a href="sipster.html">Home</a></li>
+            <li><a href="favorites.html">Favorites</a></li>
+          </ul>
+        </navigation>
+      </div>
+    </header>
+
+  <div class="appContainer">
+    <main>
+      <h2>Craft a Sip</h2>
+      <div id="drinkDetails" aria-live="polite">
+
+      </div>
+      
+    </main>
+  </div>
+
+  <footer>
+    <small>&copy; <span id="year"></span> Sipster</small>
+  </footer>
+
+  <noscript>
+    <p>Please enable JavaScript to use this application.</p>
+  </noscript>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  <script type="module" src="./details.js"></script>
+</body>
+</html>
