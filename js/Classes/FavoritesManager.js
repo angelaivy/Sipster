@@ -13,9 +13,7 @@ export class FavoritesManager {
     document.querySelector(`#drink-${this.id}`).insertAdjacentHTML('beforeend', btn);
     const addToFavesBtn = document.getElementById(`btn-${this.id}`);
 
-    // Get class buttons by their ID. In rare cases there will be multiple drinks 
-    // under one name. e.g. Addison includes 'Addison' and 'Addison Special';
-    // This ensures we can individually add the separate drinks to favorites.
+    // Get class buttons by their ID.
     const favoritesBtn = document.querySelector(`#btn-${this.id}`);
     const existingFaves = localStorage.getItem('favoriteDrinks');
     const favesArr = JSON.parse(existingFaves) || [];

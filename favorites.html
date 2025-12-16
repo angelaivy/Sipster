@@ -9,29 +9,30 @@
   <link rel="icon" href="favicon.ico">
 </head>
 <body>
-   <header>
-      <div class="appContainer">
-        <h1>🍸 Sipster</h1>
-        <p class="tagline">Search, discover, and save your favorite cocktails.</p>
-        <navigation>
-          <ul>
-            <li><a href="sipster.html">Home</a></li>
-            <li><a href="favorites.html">Favorites</a></li>
-          </ul>
-        </navigation>
+  <div class="app">
+    <header>
+        <div class="appContainer">
+          <h1>🍸 Sipster</h1>
+          <p class="tagline">Search, discover, and save your favorite cocktails.</p>
+          <navigation>
+            <ul>
+              <li><a href="sipster.html">Home</a></li>
+              <li><a href="favorites.html">Favorites</a></li>
+            </ul>
+          </navigation>
+        </div>
+      </header>
+
+      <div class="appContainer" aria-live="polite">
+        <main id="favoriteSips">
+          <h2>Favorite Sips</h2>
+        </main>
       </div>
-    </header>
-
-    <div class="appContainer" aria-live="polite">
-      <main id="favoriteSips">
-        <h2>Favorite Sips</h2>
-      </main>
-    </div>
-    
-  <footer>
-    <small>&copy; <span id="year"></span> Sipster</small>
-  </footer>
-
+      
+    <footer>
+      <small>&copy; <span id="year"></span> Sipster</small>
+    </footer>
+  </div>
   <noscript>
     <p>Please enable JavaScript to use this application.</p>
   </noscript>

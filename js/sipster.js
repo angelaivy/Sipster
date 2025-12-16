@@ -114,7 +114,7 @@ searchButton?.addEventListener('click', async (e) =>{
         drinkList
       );
       getDrink.generateDrink();
-      getDrink.getDrinkName();
+      getDrink.getDrinkId();
     });
   
   } catch(e) {

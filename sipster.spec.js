@@ -95,13 +95,13 @@ describe('Drink Details', function() {
             detailList,
         )
         drink.generateDrink();
-        drink.getDrinkName();
+        drink.getDrinkId();
         const drinkLink = document.getElementById('detailItem-1234').firstElementChild;
         drinkLink.addEventListener('click', (e) => {
             e.preventDefault();
         })
         drinkLink.click();
-        expect(localStorage.getItem('selectedDrink')).toBe('Mimosa');
+        expect(localStorage.getItem('selectedDrink')).toBe('1234');
     })
 });
 
