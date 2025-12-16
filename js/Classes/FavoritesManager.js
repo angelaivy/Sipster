@@ -1,7 +1,6 @@
 export class FavoritesManager {
   constructor(id, name) {
     this.id = id;
-    this.name = name;
   }
 
   // Add drink to favorites.
@@ -32,7 +31,7 @@ export class FavoritesManager {
       }
     })
     // Persist state.
-    if (favesArr.includes(this.name)) {
+    if (favesArr.includes(this.id)) {
       addToFavesBtn.innerText = 'Added to favorites';
       addToFavesBtn.setAttribute('disabled', true);
     }
@@ -57,7 +56,7 @@ export class FavoritesManager {
           // it back into a string for storing.
           const favesArr = JSON.parse(existingFaves || '[]');
           const updatedArr = favesArr.filter((item) => {
-            return item !== this.name;
+            return item !== this.id;
           })
           const updatedFaves = JSON.stringify(updatedArr);
           localStorage.setItem('favoriteDrinks', updatedFaves);
