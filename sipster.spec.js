@@ -114,10 +114,10 @@ describe('Favorites Manager', function() {
         detailList = document.getElementById('container');
     });
     afterEach(() => {
-        detailList.remove();
+        
     });
 
-    it('adds drink to favorites', function() {
+    it('should add to and remove from favorites', function() {
         const drink = new Drink({
                 id: "1234",
                 name: 'Mimosa',
@@ -130,30 +130,17 @@ describe('Favorites Manager', function() {
         drink.addIngredient('champange');
         drink.addIngredient('orange juice');
         drink.generateRecipe();
+       
         const favoritesManager = new FavoritesManager(drink.id);
         favoritesManager.addToFavorites();
         document.getElementById(`btn-${drink.id}`).click();
         expect(localStorage.getItem('favoriteDrinks')).toContain('1234');
-        // Clean up
-        const existingFaves = localStorage.getItem('favoriteDrinks');
-        const favesArr = JSON.parse(existingFaves || '[]');
-        const updatedArr = favesArr.filter((item) => {
-        return item !== drink.id;
-        })
-        const updatedFaves = JSON.stringify(updatedArr);
-        localStorage.setItem('favoriteDrinks', updatedFaves);
-    })
-
-    it('removes drink from favorites', function() {
-        const drink = new Drink({
-                id: "1234",
-                name: 'Mimosa',
-                thumb: 'https://www.thecocktaildb.com/images/media/drink/juhcuu1504370685.jpg',
-            },
-            detailList,
-        )
+        // Remove the drink- drink list and drink recipe use different ID's,
+        // and the add/remove from favorites methods use those separate ID's for
+        // button placement.
+        document.getElementById('drink-1234').remove();
+        
         drink.generateDrink();
-        const favoritesManager = new FavoritesManager(drink.id);
         favoritesManager.removeFromFavorites();
         document.getElementById(`btn-${drink.id}`).click();
         expect(localStorage.getItem('favoriteDrinks')).not.toContain('1234');
