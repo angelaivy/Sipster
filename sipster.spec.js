@@ -1,7 +1,7 @@
-import { isValidInput } from './validation.js';
-import { doApiRequest } from './api.js';
-import { Drink } from './Drink.js';
-import { FavoritesManager } from './FavoritesManager.js';
+import { isValidInput } from './js/validation.js';
+import { doApiRequest } from './js/api.js';
+import { Drink } from './js/Classes/Drink.js';
+import { FavoritesManager } from './js/Classes/FavoritesManager.js';
 
 describe("Filter and Search", function() {
     it('should return false for invalid input', function() {
@@ -130,10 +130,10 @@ describe('Favorites Manager', function() {
         drink.addIngredient('champange');
         drink.addIngredient('orange juice');
         drink.generateRecipe();
-        const favoritesManager = new FavoritesManager(drink.id, drink.name);
+        const favoritesManager = new FavoritesManager(drink.id);
         favoritesManager.addToFavorites();
         document.getElementById(`btn-${drink.id}`).click();
-        expect(localStorage.getItem('favoriteDrinks')).toContain('Mimosa');
+        expect(localStorage.getItem('favoriteDrinks')).toContain('1234');
     })
 
     it('removes drink from favorites', function() {
@@ -145,9 +145,9 @@ describe('Favorites Manager', function() {
             detailList,
         )
         drink.generateDrink();
-        const favoritesManager = new FavoritesManager(drink.id, drink.name);
+        const favoritesManager = new FavoritesManager(drink.id);
         favoritesManager.removeFromFavorites();
         document.getElementById(`btn-${drink.id}`).click();
-        expect(localStorage.getItem('favoriteDrinks')).not.toContain('Mimosa');
+        expect(localStorage.getItem('favoriteDrinks')).not.toContain('1234');
     })
 });

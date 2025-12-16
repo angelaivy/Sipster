@@ -1,7 +1,6 @@
 export class FavoritesManager {
   constructor(id, name) {
     this.id = id;
-    this.name = name;
   }
 
   // Add drink to favorites.
@@ -23,8 +22,8 @@ export class FavoritesManager {
     favoritesBtn.addEventListener('click', () => {
       // Because localStorage is string data, we need to modify it to be an 
       // array to push values to, and then parse it back into a string for storing.
-      if (!favesArr.includes(this.name)) {
-        favesArr.push(this.name);
+      if (!favesArr.includes(this.id)) {
+        favesArr.push(this.id);
         const updatedFaves = JSON.stringify(favesArr);
         localStorage.setItem('favoriteDrinks', updatedFaves);
         addToFavesBtn.innerText = 'Added to favorites';
@@ -32,7 +31,7 @@ export class FavoritesManager {
       }
     })
     // Persist state.
-    if (favesArr.includes(this.name)) {
+    if (favesArr.includes(this.id)) {
       addToFavesBtn.innerText = 'Added to favorites';
       addToFavesBtn.setAttribute('disabled', true);
     }
@@ -57,7 +56,7 @@ export class FavoritesManager {
           // it back into a string for storing.
           const favesArr = JSON.parse(existingFaves || '[]');
           const updatedArr = favesArr.filter((item) => {
-            return item !== this.name;
+            return item !== this.id;
           })
           const updatedFaves = JSON.stringify(updatedArr);
           localStorage.setItem('favoriteDrinks', updatedFaves);

@@ -41,7 +41,7 @@ export class Drink {
     `
     // Generate the ingredients and measurements as list items.
     this.container.insertAdjacentHTML('beforeend', detailRecipe);
-    const detailRecipeContainer = document.querySelector('.detailRecipe');
+    const detailRecipeContainer = document.querySelector(`#drink-${this.id}.detailRecipe`);
     const glass = detailRecipeContainer.querySelector('.ingredients > li:first-child');
     this.ingredients.forEach((ingredient) => {
       const newIngredient = `<li>${ingredient}</li>`;
