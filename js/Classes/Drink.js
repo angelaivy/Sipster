@@ -54,12 +54,12 @@ export class Drink {
     this.ingredients.push(ingredient);
   }
 
-  // Get drink name and save in localstorage for later use.
-  getDrinkName() {
+  // Get drink id and save in localstorage for later use.
+  getDrinkId() {
     const drinkLink = document.querySelector(`#detailItem-${this.id} a`);
     if (drinkLink) {
        drinkLink.addEventListener('click', () => {
-        localStorage.setItem('selectedDrink', this.name);
+        localStorage.setItem('selectedDrink', this.id);
     })
     }
   }

@@ -8,14 +8,13 @@ async function populateDetailsPage() {
   const detailsContainer = document.querySelector('#drinkDetails');
   // Populate details container on details page.
   if (detailsContainer) {
-    const clickedDrinkName = localStorage.getItem('selectedDrink');
+    const clickedDrinkId = localStorage.getItem('selectedDrink');
     let selectedDrinks = [];
     try {
-      // There could be multiple drinks that use name.
-      const results = await doApiRequest('search.php?s=', `${clickedDrinkName}`);
+      const results = await doApiRequest('lookup.php?i=', `${clickedDrinkId}`);
       selectedDrinks = results['drinks'];
     } catch(e) {
-      console.log('Drink query invalid.');
+      console.log(`Unable to look up drink id. ${clickedDrinkId}`);
     }
 
     // If there are valid results display the list - should be an array.
@@ -61,8 +60,6 @@ async function populateDetailsPage() {
       });
     }
   }
-
-  
 }
 populateDetailsPage();
 

@@ -18,6 +18,8 @@ html, body {
   max-width: 1040px;
   margin: 0 auto;
   padding: 1.5rem;
+  flex: 1;
+  width: 100%;
 }
 
 @media (min-width: 768px) {
@@ -327,7 +329,7 @@ select.error:focus-visible {
   #favoriteSips .detailItem a {
     height: 80%;
   }
-  #favoriteSips ul:not(navigation ul) {
+  #favoriteSips ul:not(navigation ul):not(ul.ingredients) {
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   }
 }

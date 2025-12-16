@@ -33,7 +33,7 @@ function populateFavoritesPage() {
               drinkList
             );
             getDrink.generateDrink();
-            getDrink.getDrinkName();
+            getDrink.getDrinkId();
             const favoritesManager = new FavoritesManager(getDrink.id, getDrink.name);
             favoritesManager.removeFromFavorites();
           });
