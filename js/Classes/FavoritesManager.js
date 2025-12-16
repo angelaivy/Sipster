@@ -23,8 +23,8 @@ export class FavoritesManager {
     favoritesBtn.addEventListener('click', () => {
       // Because localStorage is string data, we need to modify it to be an 
       // array to push values to, and then parse it back into a string for storing.
-      if (!favesArr.includes(this.name)) {
-        favesArr.push(this.name);
+      if (!favesArr.includes(this.id)) {
+        favesArr.push(this.id);
         const updatedFaves = JSON.stringify(favesArr);
         localStorage.setItem('favoriteDrinks', updatedFaves);
         addToFavesBtn.innerText = 'Added to favorites';

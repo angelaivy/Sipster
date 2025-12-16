@@ -5,7 +5,7 @@ import { Drink } from './Classes/Drink.js';
 import { FavoritesManager } from './Classes/FavoritesManager.js';
 
 function populateFavoritesPage() {
-  const favoritesContainer = document.querySelector('main#favoriteSips');
+  const favoritesContainer = document.querySelector('#favoriteSips');
   // Populate fave drinks container on favorites page.
   if (favoritesContainer) {
     const getFavorites = localStorage.getItem('favoriteDrinks');
@@ -16,7 +16,7 @@ function populateFavoritesPage() {
 
     favoriteDrinks.forEach(async (fave) => {
       try {
-          const results = await doApiRequest('search.php?s=', `${fave}`);
+          const results = await doApiRequest('lookup.php?i=', `${fave}`);
           const drinks = results['drinks'];
       
           // Get drinks and populate with results.
