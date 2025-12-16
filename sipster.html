@@ -28,7 +28,7 @@
           <div class="appContainer">
             <div class="flex">
               <div class="formContainer">
-                <label for="selectFilter">Choose a filter to start your search:</label>
+                <label for="selectFilter">Choose a filter:</label>
                 <select id="selectFilter" name="select-filter" required>
                   <option value="">- Select -</option>
                   <option value="name">Name</option>
@@ -43,7 +43,7 @@
               <div class="formContainer hide">
                 <label for="searchInput">Search a sip:</label>
                 <input type="text" id="searchInput" name="search-input" required />
-                <div class="errorMessage hide" aria-live="assertive">Please enter a valid search term.</div>
+                <div class="errorMessage hide" aria-live="assertive">Enter a valid search term.</div>
               </div>
 
               <div class="formContainer hide">
@@ -78,9 +78,10 @@
                 </select>
                 <div class="errorMessage hide" aria-live="assertive">Please select a preference.</div>
               </div>
+              <div class="formContainer btn"><button type="submit">Search</button></div>
             </div>
             
-            <button type="submit">Search</button>
+            
           </div>
         </form>
         <div class="appContainer">

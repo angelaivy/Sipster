@@ -5,7 +5,7 @@ import { Drink } from './Drink.js';
 import { FavoritesManager } from './FavoritesManager.js';
 
 async function populateDetailsPage() {
-  const detailsContainer = document.querySelector('main#drinkDetails');
+  const detailsContainer = document.querySelector('#drinkDetails');
   // Populate details container on details page.
   if (detailsContainer) {
     const clickedDrinkName = localStorage.getItem('selectedDrink');

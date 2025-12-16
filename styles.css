@@ -1,5 +1,5 @@
 :root {
-  --accent: #B87333; /* copper */
+  --accent: #A4672D; /* copper */
   --darkbg: #1f2933; /* dark slate */
   --error:  #e63946; 
 }
@@ -48,6 +48,11 @@ img {
   display: block;
 }
 
+h2 {
+  font-size: 2rem;
+  text-align: center;
+}
+
 a {
   color: inherit;
 }
@@ -59,8 +64,19 @@ li {
 button {
   padding: 0.5rem 0.75rem;
   font-size: 0.95rem;
-  border: 1px solid #ccc;
+  border: 1px solid var(--accent);
+  background-color: var(--accent);
   border-radius: 6px;
+  margin: 10px 0;
+  height: 40px;
+  width: 180px;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button[disabled] {
+  background-color: gray;
 }
 
 .hide {
@@ -72,7 +88,6 @@ button {
 }
 
 /* HEADER */
-
 header {
   background: var(--darkbg);
   color: white;
@@ -117,6 +132,8 @@ form button {
   border: 1px solid var(--accent);
   border-radius: 6px;
   margin: 10px 0;
+  height: 40px;
+  width: 180px;
 }
 
 form label {
@@ -124,14 +141,18 @@ form label {
 }
 
 form button {
-  background: var(--accent);
-  color: white;
-  border: none;
-  cursor: pointer;
+  align-self: anchor-center;
 }
 
 form button:hover {
   opacity: 0.9;
+}
+
+@media(min-width: 640px) {
+  .formContainer.btn {
+    height: 100px;
+    align-content: center;
+  }
 }
 
 /* Error styles */
@@ -168,16 +189,18 @@ select.error:focus-visible {
 .detailItem img {
   aspect-ratio: 1 / 1;
   object-fit: cover;
+  border-radius: 0 0 10px 10px;
 }
 
 .detailItem h2 {
   padding: 0.75rem;
   font-size: 1.5rem;
   text-align: center;
+  margin: 0!important;
 }
 
 @media (min-width: 640px) {
-  #results ul {
+  ul:not(navigation ul):not(ul.ingredients) {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 1.25rem;
@@ -201,7 +224,7 @@ select.error:focus-visible {
     gap: 3rem;
     flex-wrap: wrap; 
   }
-  #results ul {
+  ul:not(navigation ul):not(ul.ingredients) {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 2rem;
@@ -218,49 +241,93 @@ select.error:focus-visible {
   box-shadow: 0 6px 16px rgba(0,0,0,0.08);
 }
 
-.detailRecipe {
-  display: flex;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-}
-
 .detailRecipe img {
-  width: 280px;
+  width: 100%;
   border-radius: 10px;
 }
 
-.detailRecipe h2 {
-  font-size: 1.75rem;
-  margin-bottom: 0.5rem;
+.detailRecipe h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
 }
 
-.detailRecipe h3 {
-  margin-bottom: 0.5rem;
+.detailRecipe h3::before,
+.detailRecipe h3::after {
+  content: "";
+  background-color: var(--accent);
+  display: block;
+  width: 32px;
+  height: 2px;
+  margin: 0.5rem auto;
+}
+
+.ingredients li {
+  list-style-type: disc;
+  margin: .5rem 0 0 1rem;
+}
+
+.instructions {
+  margin-bottom: 1rem;
+}
+
+.subheading {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 2rem 0 0.5rem 0;
   border-bottom: 2px solid var(--accent);
   display: inline-block;
 }
 
-.ingredients {
-  margin-top: 1.5rem;
+@media (min-width: 640px) {
+  .detailRecipe {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 1rem 2rem;
+  }
+
+  .detailRecipe h3 {
+    grid-column: 1 / -1;
+  }
+
+  .detailRecipe img {
+    grid-column: 1;
+    width: 100%;
+    max-width: 320px;
+    position: sticky;
+  }
+  
+  .recipeDetails {
+    grid-column: 2;
+    justify-self: start;
+  }
+}
+
+@media (min-width: 768px) {
+  .detailRecipe {
+    grid-template-columns: 450px 1fr;
+  }
+  .detailRecipe img {
+    max-width: 450px;
+  }
 }
 
 /* Favorites */
-#favoriteSips {
-  padding: 1.5rem;
-  background: #fff;
-  border-top: 1px solid #ddd;
-}
-
 #favoriteSips h2 {
-  margin-bottom: 1rem;
+  margin: 0 auto 2rem auto;
+}
+.removeFromFavorites {
+  text-align: center;
+}
+.removeFromFavorites button {
+  margin: 1.5rem 0;
 }
 
-#favoriteSips ul {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 1rem;
+@media (min-width: 640px) {
+  #favoriteSips .detailItem a {
+    height: 80%;
+  }
+  #favoriteSips ul:not(navigation ul) {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
 }
-
-
-
-

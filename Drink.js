@@ -26,16 +26,17 @@ export class Drink {
   generateRecipe() {
     const detailRecipe = `
       <div id="drink-${this.id}" class="detailRecipe">
-        <h2>${this.name}</h2>
+        <h3>${this.name}</h3>
         <img src="${this.thumb}" alt=""/>
-        
-        <h3>What you'll need</h3>
-        <ul class="ingredients">
-          <li>${this.glass}</li>
-        </ul>
+        <div class="recipeDetails">
+          <p class="subheading">What you'll need</p>
+          <ul class="ingredients">
+            <li>${this.glass}</li>
+          </ul>
 
-        <h3>Instructions</h3>
-        <p>${this.instructions}</p>
+          <p class="subheading">Instructions</p>
+          <p class="instructions">${this.instructions}</p>
+        </div>
       </div>
     `
     // Generate the ingredients and measurements as list items.

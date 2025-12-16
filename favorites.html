@@ -4,26 +4,30 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="Sipster: search, discover, and save your favorite cocktails." />
-  <title>Sipster | Drink Details</title>
+  <title>Sipster | Favorites</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="favicon.ico">
 </head>
 <body>
-  <header>
-    <h1>Sipster</h1>
-    <p class="tagline">Sipster: search, discover, and save your favorite cocktails.</p>
-    <navigation>
-      <ul>
-        <li><a href="sipster.html">Home</a></li>
-        <li><a href="favorites.html">Favorites</a></li>
-      </ul>
-    </navigation>
-  </header>
+   <header>
+      <div class="appContainer">
+        <h1>🍸 Sipster</h1>
+        <p class="tagline">Search, discover, and save your favorite cocktails.</p>
+        <navigation>
+          <ul>
+            <li><a href="sipster.html">Home</a></li>
+            <li><a href="favorites.html">Favorites</a></li>
+          </ul>
+        </navigation>
+      </div>
+    </header>
 
-  <main id="favoriteSips" aria-live="polite">
-    <h1>Favorite Sips</h1>
-  </main>
-
+    <div class="appContainer" aria-live="polite">
+      <main id="favoriteSips">
+        <h2>Favorite Sips</h2>
+      </main>
+    </div>
+    
   <footer>
     <small>&copy; <span id="year"></span> Sipster</small>
   </footer>
