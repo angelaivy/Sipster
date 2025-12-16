@@ -119,7 +119,7 @@ describe('Favorites Manager', function() {
 
     it('adds drink to favorites', function() {
         const drink = new Drink({
-                id: 1234,
+                id: "1234",
                 name: 'Mimosa',
                 thumb: 'https://www.thecocktaildb.com/images/media/drink/juhcuu1504370685.jpg',
                 glass: 'champagne flute',
@@ -138,7 +138,7 @@ describe('Favorites Manager', function() {
 
     it('removes drink from favorites', function() {
         const drink = new Drink({
-                id: 1234,
+                id: "1234",
                 name: 'Mimosa',
                 thumb: 'https://www.thecocktaildb.com/images/media/drink/juhcuu1504370685.jpg',
             },
