@@ -58,8 +58,8 @@ describe('Drink Details', function() {
         )
         drink.generateDrink();
         expect(detailList.innerHTML).toContain('<li id="detailItem-1234" class="detailItem">');
-        expect(detailList.innerHTML).toContain('<h3>margarita</h3>');
-        expect(detailList.innerHTML).toContain('<img src="https://www.thecocktaildb.com/images/media/drink/dztcv51598717861.jpg/small" alt="">');
+        expect(detailList.innerHTML).toContain('<h2>margarita</h2>');
+        expect(detailList.innerHTML).toContain('<img src="https://www.thecocktaildb.com/images/media/drink/dztcv51598717861.jpg" alt="">');
     });
 
     it('should have expected drink recipe html', function() {
@@ -78,9 +78,9 @@ describe('Drink Details', function() {
         drink.generateRecipe();
                
         expect(detailList.innerHTML).toContain('<div id="drink-1234" class="detailRecipe">');
-        expect(detailList.innerHTML).toContain('<h2>Mimosa</h2>');
-        expect(detailList.innerHTML).toContain('<img src="https://www.thecocktaildb.com/images/media/drink/juhcuu1504370685.jpg/small" alt="">');
-         expect(detailList.innerHTML).toContain('<p>pour champagne until the glass is mostly full, splash orange juice</p>');
+        expect(detailList.innerHTML).toContain('<h3>Mimosa</h3>');
+        expect(detailList.innerHTML).toContain('<img src="https://www.thecocktaildb.com/images/media/drink/juhcuu1504370685.jpg" alt="">');
+         expect(detailList.innerHTML).toContain('<p class="instructions">pour champagne until the glass is mostly full, splash orange juice</p>');
         expect(detailList.innerHTML).toContain('<li>champagne flute</li>');
         expect(detailList.innerHTML).toContain('<li>champange</li>');
         expect(detailList.innerHTML).toContain('<li>orange juice</li>');

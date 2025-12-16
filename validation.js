@@ -5,11 +5,11 @@ const isValidInput = (type, el, value) => {
   if (type === 'select-one') {
     if (value) {
       errorMessageContainer && hideEl(errorMessageContainer);
-      el.classList.remove('error');
+      el?.classList.remove('error');
       return true;
     } else {
       errorMessageContainer && showEl(errorMessageContainer);
-      el.classList.add('error');
+      el?.classList.add('error');
       return false;
     }
   }
@@ -19,11 +19,11 @@ const isValidInput = (type, el, value) => {
     const invalidRegex = /^[A-Za-z0-9 -]+$/;
     if (!invalidRegex.test(value)) {
       errorMessageContainer && showEl(errorMessageContainer);
-      el.classList.add('error');
+      el?.classList.add('error');
       return false;
     } else {
       errorMessageContainer && hideEl(errorMessageContainer);
-      el.classList.remove('error');
+      el?.classList.remove('error');
       return true;
     }
   }
